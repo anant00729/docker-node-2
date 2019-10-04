@@ -8,7 +8,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=codinggigs
+      - POSTGRES_DB=quonquer
     volumes:
       - pgdata:/var/lib/postgresql/data
           
@@ -30,7 +30,7 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgres://postgres:password@db:5432/codinggigs
+      - DATABASE_URL=postgres://postgres:password@db:5432/quonquer
       - PORT=3000   
   
 volumes: 
