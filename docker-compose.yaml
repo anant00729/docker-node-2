@@ -1,0 +1,36 @@
+version: "3"
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=codinggigs
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+          
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - 5454:5454/tcp
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=aa@aa.com
+      - PGADMIN_DEFAULT_PASSWORD=postgres
+      - PGADMIN_LISTEN_PORT=5454  
+  
+  codinggig: 
+    build: .
+    ports: 
+      - 80:3000
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; npm start'
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:password@localhost:5432/codinggigs
+      - PORT=3000   
+  
+volumes: 
+  pgdata:        
+    
