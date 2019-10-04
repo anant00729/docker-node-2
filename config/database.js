@@ -1,8 +1,17 @@
 const Sequelize = require('sequelize')
 
 
-module.exports = new Sequelize('codinggig', 'postgres', '123123123', {
-    host: 'localhost',
+// const _p = new Pool({
+//     user : 'postgres',
+//     password : '123123123',
+//     host : 'localhost',
+//     port : 5432,
+//     database : 'quonquer'
+// })
+
+
+module.exports = new Sequelize('codinggig', 'postgres', 'password', {
+    host: 'db',
     dialect: 'postgres',
     operatorsAlias : false,
     pool: {

@@ -5,13 +5,6 @@ const db = require('./config/database')
 
 
 
-// const _p = new Pool({
-//     user : 'postgres',
-//     password : '123123123',
-//     host : 'localhost',
-//     port : 5432,
-//     database : 'quonquer'
-// })
 
 
 
