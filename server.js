@@ -5,10 +5,6 @@ const db = require('./config/database')
 
 
 
-
-
-
-
 // Test DB 
 db.authenticate()
 .then(()=> console.log('connected to the database'))
@@ -22,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-app.use('/gigs' , require('./routes/gigs'))
+
 app.use('/article' , require('./routes/article'))
 
 

@@ -1,7 +1,6 @@
 const  Article = require('../models/Article')
 const { Op } = require('sequelize')
 
-
  exports.getAllArticles = async (req,res) => {
     Article.findAll()
     .then((res_d)=> {
@@ -23,4 +22,9 @@ const { Op } = require('sequelize')
     })
  }
 
+
+
+ exports.uploadImageForArticles = async(req,res) => {
+    res.json(req.file.filename)
+ }
 
