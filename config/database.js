@@ -10,8 +10,8 @@ const Sequelize = require('sequelize')
 // })
 
 
-module.exports = new Sequelize('codinggig', 'postgres', 'password', {
-    host: 'db',
+module.exports = new Sequelize('codinggigs', 'postgres', 'password', {
+    host: 'localhost',
     dialect: 'postgres',
     operatorsAlias : false,
     pool: {
@@ -19,5 +19,6 @@ module.exports = new Sequelize('codinggig', 'postgres', 'password', {
         min: 0,
         acquire: 30000,
         idle: 10000
-      }
+      },
+      
 });
