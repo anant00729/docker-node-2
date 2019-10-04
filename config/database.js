@@ -10,15 +10,18 @@ const Sequelize = require('sequelize')
 // })
 
 
-module.exports = new Sequelize('codinggigs', 'postgres', 'password', {
-    host: 'db',
-    dialect: 'postgres',
-    operatorsAlias : false,
-    pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-      },
+// module.exports = new Sequelize('codinggigs', 'postgres', 'password', {
+//     host: 'db',
+//     dialect: 'postgres',
+//     operatorsAlias : false,
+//     pool: {
+//         max: 5,
+//         min: 0,
+//         acquire: 30000,
+//         idle: 10000
+//       },
       
-});
+// });
+
+
+module.exports =  new Sequelize('postgres://postgres:password@db:5432/codinggigs');
