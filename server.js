@@ -23,6 +23,7 @@ app.use(bodyParser.json());
 
 
 app.use('/gigs' , require('./routes/gigs'))
+app.use('/article' , require('./routes/article'))
 
 
 
