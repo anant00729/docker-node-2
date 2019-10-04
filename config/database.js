@@ -11,7 +11,7 @@ const Sequelize = require('sequelize')
 
 
 module.exports = new Sequelize('codinggigs', 'postgres', 'password', {
-    host: 'localhost',
+    host: 'db',
     dialect: 'postgres',
     operatorsAlias : false,
     pool: {
