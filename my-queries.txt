@@ -33,6 +33,9 @@ SELECT * FROM public."Articles"
 SELECT * FROM public."CAns"
 
 
+9iLICVt3wW89BY5sGk5XFsPhcGZLOkAWzVdJpsgU2PV5mL6qt9
+QgQOfhZOOpLn0YeRwmdXIhZJOCDBvpTorRCPL5YsYAFEopk0LC
+134.209.145.53
 
 TRUNCATE ONLY 
    "CQuestions",
