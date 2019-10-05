@@ -32,6 +32,33 @@ app.get('/', (req,res)=> {
     res.json({Hellloe : "helo all"})
 })
 
+
+
+app.get('/voidmain', (req,res)=> {
+    const a = []
+
+    const b = []
+
+    for(let i = 0 ; i < 100 ; i++){
+        a.push(i)
+    }
+
+
+
+    for(let i = 0 ; i < a.length ; i++){
+        if(a[i] % 2 == 0){
+            b.push(a[i])
+        }
+    }
+
+
+    res.json(b)
+
+})
+
+
+
+
 app.listen(PORT, () => {
     console.log(`the app is running on ${PORT}`);
 })
