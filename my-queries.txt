@@ -19,5 +19,24 @@ FROM
    "CQuestions" a
 INNER JOIN "Users" u ON  a."userId" = u."id";
 
+SELECT
+   *
+FROM
+   "UserSessions" a
+INNER JOIN "Users" u ON  a."userId" = u."id";
 
-TRUNCATE ONLY "Users", "UserSessions", "CQuestions"
+
+SELECT * FROM public."CQuestions"
+SELECT * FROM public."UserSessions"
+SELECT * FROM public."Users"
+SELECT * FROM public."Articles"
+SELECT * FROM public."CAns"
+
+
+
+TRUNCATE ONLY 
+   "CQuestions",
+   "UserSessions",
+   "Users",
+   "Articles",
+   "CAns"

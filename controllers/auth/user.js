@@ -1,6 +1,7 @@
 const  User = require('../../models/User')
 const  UserSession = require('../../models/UserSessions')
 const _db = require('../../config/database')
+const {checkUserPresent} = require('./checkPresent')
 
  exports.register = async (req,res) => {
 
@@ -39,7 +40,12 @@ const _db = require('../../config/database')
 
  exports.truncateAll = async (req,res) => {
 
-    const _t = `TRUNCATE ONLY "Users", "UserSessions", "CQuestions"`
+    const _t = `TRUNCATE ONLY 
+                "CQuestions",
+                "UserSessions",
+                "Users",
+                "Articles",
+                "CAns"`
     try{
         const res_d = await _db.query(_t)
         //[results, metadata]
@@ -99,13 +105,7 @@ const _db = require('../../config/database')
  }
 
 
- const checkUserPresent = async (email , password) => {
-        //check the user register
-        const q1 = `SELECT * FROM "Users" WHERE "email" = '${email}' AND "password" = '${password}'`
-        const f_res_d = await _db.query(q1)
-        const data = [f_res_d[0].length, f_res_d[0][0]]
-        return data
- }
+ 
 
 
  const randomString = (len, charSet) => {
