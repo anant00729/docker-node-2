@@ -13,14 +13,14 @@ services:
       - pgdata:/var/lib/postgresql/data
           
 
-  pgadmin:
-    image: dpage/pgadmin4
-    ports:
-      - 5454:5454/tcp
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=aa@aa.com
-      - PGADMIN_DEFAULT_PASSWORD=postgres
-      - PGADMIN_LISTEN_PORT=5454  
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   ports:
+  #     - 5454:5454/tcp
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=aa@aa.com
+  #     - PGADMIN_DEFAULT_PASSWORD=postgres
+  #     - PGADMIN_LISTEN_PORT=5454  
   
   codinggig: 
     build: .

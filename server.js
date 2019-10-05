@@ -20,6 +20,7 @@ app.use(bodyParser.json());
 
 
 app.use('/article' , require('./routes/article'))
+app.use('/auth' , require('./routes/user'))
 
 
 

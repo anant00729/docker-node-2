@@ -1,0 +1,23 @@
+INSERT INTO public."Users"(
+name, email, password)
+VALUES ('anan', 'a@g.ocm', '123123');
+
+SELECT * FROM "Users"
+
+
+INSERT INTO public."CQuestions"(
+ question, clap, "qColor", "isActive", "userId")
+VALUES ( 'ajsdkahsdkdhad', 12, 'asd', 1, 1);
+
+SELECT * FROM "CQuestions"
+
+SELECT * FROM "Users"
+
+SELECT
+   *
+FROM
+   "CQuestions" a
+INNER JOIN "Users" u ON  a."userId" = u."id";
+
+
+TRUNCATE ONLY "Users", "UserSessions", "CQuestions"
