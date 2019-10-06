@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const db = require('./config/database')
+const path = require('path')
 
 
 
@@ -33,32 +34,16 @@ app.use('/community' , require('./routes/community'))
 const PORT = process.env.PORT || 3001
 
 
-app.get('/', (req,res)=> {
-    res.json({Hellloe : "helo all"})
-})
+// app.get('/', (req,res)=> {
+//     res.json({Hellloe : "helo all"})
+// })
 
 
 
-app.get('/voidmain', (req,res)=> {
-    const a = []
+app.use(express.static('./public/build'))
 
-    const b = []
-
-    for(let i = 0 ; i < 100 ; i++){
-        a.push(i)
-    }
-
-
-
-    for(let i = 0 ; i < a.length ; i++){
-        if(a[i] % 2 == 0){
-            b.push(a[i])
-        }
-    }
-
-
-    res.json(b)
-
+app.get('*', (req,res)=> {
+    res.sendFile(path.resolve(__dirname, 'public', 'build', 'index.html'))
 })
 
 
