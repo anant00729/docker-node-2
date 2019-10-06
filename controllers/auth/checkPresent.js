@@ -32,15 +32,7 @@ exports.checkUserPresentMiddle = async (req,res ,next) => {
         
         res.json({Status : false, Message : 'Token Expired'})
     }
-
-    
-
-    // if(res_d){
-
-    // }else {
-
-    // }
-    
-    
     
 }
+
+

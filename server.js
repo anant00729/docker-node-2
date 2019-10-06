@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-
+const cors = require('cors')
 const db = require('./config/database')
 
 
@@ -14,6 +14,9 @@ db.authenticate()
 
 const app = express()
 
+
+app.use(cors())
+
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
@@ -22,6 +25,8 @@ app.use(bodyParser.json())
 app.use('/article' , require('./routes/article'))
 app.use('/auth' , require('./routes/user'))
 app.use('/community' , require('./routes/community'))
+
+
 
 
 
