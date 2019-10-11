@@ -10,9 +10,9 @@ const fetch = require('node-fetch');
 
     const email = req.body.email
     const password = req.body.password
-    const name = req.body.email
-    const isActive = req.body.isActive
-    const UserType = req.body.userType
+    const name = email.split('@')[0]
+    const isActive = '1'
+    const UserType = 'nor'
     const picture = ''
 
     try{
