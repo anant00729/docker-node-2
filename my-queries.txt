@@ -43,3 +43,14 @@ TRUNCATE ONLY
    "Users",
    "Articles",
    "CAns"
+
+
+INSERT INTO public."Articles"(
+	"ArticleName", "ArticleAuthorName", "PublishedOn", "ReadTime", "ArticleTemplate", "isActive")
+	VALUES ('asd', 'sda','asd', 'sad', 'asd', 1);
+	
+SELECT * FROM "Articles"	   
+
+UPDATE public."Articles"
+	SET "ArticleTemplate"= 'asdsa'
+	WHERE "id" = 1;

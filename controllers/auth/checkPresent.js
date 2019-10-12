@@ -27,7 +27,6 @@ exports.checkUserPresentMiddle = async (req,res ,next) => {
         const _q = res_d[0][0]
         req.user = _q
         next()
-        //res.json({Status : true, Message : _q})
     }else {
         
         res.json({Status : false, Message : 'Token Expired'})

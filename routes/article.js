@@ -21,6 +21,8 @@ var upload = multer({storage: storage});
 const _r = express.Router()
 _r.get('/getAllArticles', _a_c.getAllArticles)
 _r.post('/insertAllArticles', _a_c.insertAllArticles)
+_r.post('/updateArticlesTemplate', _a_c.updateArticlesTemplate)
+_r.post('/instert100Articles', _a_c.instert100Articles)
 _r.post('/uploadImageForArticles', upload.single('image') ,  _a_c.uploadImageForArticles)
 
 
