@@ -40,7 +40,7 @@ const PORT = process.env.PORT || 3001
 
 
 
-app.use(express.static('./public/build'))
+app.use(express.static('./public'))
 
 app.get('*', (req,res)=> {
     res.sendFile(path.resolve(__dirname, 'public', 'build', 'index.html'))

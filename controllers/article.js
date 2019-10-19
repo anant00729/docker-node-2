@@ -11,10 +11,10 @@ const _db = require('../config/database')
             return d
         })
 
-        res.json(res_d)
+        res.json({Status : true , Message : "" , articles : res_d })
     })
     .catch((err)=> {
-        res.json(err.message)
+        res.json({Status : false , Message : err.message})
     })
  }
 
@@ -36,13 +36,27 @@ const _db = require('../config/database')
  }
 
  exports.updateArticlesTemplate = async(req,res) => {
-    const _t = `UPDATE "Articles"
-	SET "ArticleTemplate"= (:data)
-    WHERE "id" = (:id);`
-    
+
+    const id = req.body.id
+    const arr = req.body.images
+    let data = req.body.data
     try{
+        data = data.map((d) => {
+            if(d.type === 'block-img' || d.type === 'inline-img'){
+                d.value = arr[0]
+                arr.splice(0,1)
+            }
+
+            return d
+        })
+
+
+        const _t = `UPDATE "Articles"
+        SET "ArticleTemplate"= (:data)
+        WHERE "id" = (:id);`
+    
         const res_d = await _db.query(_t, {
-            replacements: {id: '4' , data : JSON.stringify(req.body.data)},
+            replacements: {id , data : JSON.stringify(req.body.data)},
             type: _db.QueryTypes.UPDATE
           })
         //[results, metadata]
@@ -80,6 +94,52 @@ const _db = require('../config/database')
         res.json({Status : false , Message : err.message})
     }
  }
+
+
+ exports.insertSingleArticle = async(req,res) => {
+
+
+    const title = req.body.title
+    //const subTitle = req.body.subTitle
+    const authorname = req.body.authorname
+    const Publishedon = req.body.Publishedon
+    const readtime = req.body.readtime
+    const article_temp = req.body.article_temp
+
+    const _t =  `INSERT INTO public."Articles"(
+        "ArticleName", "ArticleAuthorName", "PublishedOn", "ReadTime", "isActive")
+        VALUES (
+            '${title}', 
+            '${authorname}', 
+            '${Publishedon}', 
+            '${readtime}', 
+            '1'
+            );`
+    
+    try{
+        const res_d = await _db.query(_t, {
+            type: _db.QueryTypes.INSERT
+          })
+        //[results, metadata]
+
+        console.log('res_d :', res_d);
+
+        res.json({Status : true , Message : "" , res_d : res_d[0]})
+    }catch(err){
+        res.json({Status : false , Message : err.message})
+    }
+
+  
+
+    console.log('article_temp :', article_temp);
+
+
+    
+    res.json({Status: true, Message : 'Done'})
+ }
+ 
+
+
  
 
 
