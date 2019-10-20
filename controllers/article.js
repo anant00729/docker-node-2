@@ -3,21 +3,62 @@ const { Op } = require('sequelize')
 const _db = require('../config/database')
 
  exports.getAllArticles = async (req,res) => {
-    Article.findAll()
-    .then((res_d)=> {
 
-        res_d = res_d.map((d)=> {
-            d.ArticleTemplate = JSON.parse(d.ArticleTemplate)
-            return d
-        })
 
-        res.json({Status : true , Message : "" , articles : res_d })
-    })
-    .catch((err)=> {
+    try {
+
+    const _t =  `SELECT "ArticleName", "ArticleAuthorName", "PublishedOn", "ReadTime",  id, "SubTitle", "MainImg", "SearchTags"
+    FROM public."Articles"`;
+    
+    const res_d = await _db.query(_t, {
+        type: _db.QueryTypes.SELECT
+      })
+
+    //   res_d = res_d.map((d)=> {
+    //     d.ArticleTemplate = JSON.parse(d.ArticleTemplate)
+    //     return d
+    // })
+
+    res.json({Status : true , Message : "" , articles : res_d })
+        
+    } catch (err) {
         res.json({Status : false , Message : err.message})
-    })
+    }
+    
  }
 
+
+ exports.getSingleArticles = async (req,res) => {
+    try {
+
+        const id = req.body.id
+
+        const _t =  `SELECT *
+        FROM public."Articles" WHERE "id" = (:id)`;
+        
+        let res_d = await _db.query(_t, {
+            replacements : {id} ,
+            type: _db.QueryTypes.SELECT
+          })
+    
+          res_d = res_d.map((d)=> {
+            d.ArticleTemplate = JSON.parse(d.ArticleTemplate)
+            d.SearchTags = JSON.parse(d.SearchTags)
+            return d
+        })
+    
+        res.json({Status : true , Message : "" , articles : res_d })
+            
+        } catch (err) {
+            res.json({Status : false , Message : err.message})
+        }
+
+ }
+
+
+
+
+ 
 
  exports.insertAllArticles = async (req,res) => {
     Article.findAll()
@@ -99,25 +140,61 @@ const _db = require('../config/database')
  exports.insertSingleArticle = async(req,res) => {
 
 
-    const title = req.body.title
-    //const subTitle = req.body.subTitle
-    const authorname = req.body.authorname
-    const Publishedon = req.body.Publishedon
-    const readtime = req.body.readtime
-    const article_temp = req.body.article_temp
+    const ArticleName = req.body.title
+    const SubTitle = req.body.subTitle
+    const ArticleAuthorName = req.body.authorname
+    const PublishedOn = req.body.Publishedon
+    const ReadTime = req.body.readtime
+    let ArticleTemplate = req.body.article_temp
+    let SearchTags = req.body.tags
+    const arr = req.body.images
 
-    const _t =  `INSERT INTO public."Articles"(
-        "ArticleName", "ArticleAuthorName", "PublishedOn", "ReadTime", "isActive")
-        VALUES (
-            '${title}', 
-            '${authorname}', 
-            '${Publishedon}', 
-            '${readtime}', 
-            '1'
-            );`
+  
     
     try{
+
+        const MainImg =  arr[0]
+        arr.splice(0,1)
+
+        ArticleTemplate = ArticleTemplate.map((d) => {
+            if(d.type === 'block-img' || d.type === 'inline-img'){
+                d.value = arr[0]
+                arr.splice(0,1)
+            }
+
+            return d
+        })
+
+
+        ArticleTemplate = JSON.stringify(ArticleTemplate)
+        SearchTags = JSON.stringify(SearchTags)
+
+
+        const _t =  `INSERT INTO public."Articles"(
+            "ArticleName", "SubTitle",  "ArticleAuthorName", "PublishedOn", "ReadTime", "isActive", "ArticleTemplate", "MainImg", "SearchTags")
+            VALUES (
+                (:ArticleName),
+                (:SubTitle),
+                (:ArticleAuthorName),
+                (:PublishedOn),
+                (:ReadTime),
+                '1',
+                (:ArticleTemplate),
+                (:MainImg),
+                (:SearchTags)
+                );`
+
         const res_d = await _db.query(_t, {
+            replacements: {
+                ArticleName,
+                SubTitle,
+                ArticleAuthorName,
+                PublishedOn,
+                ReadTime,
+                ArticleTemplate,
+                MainImg,
+                SearchTags
+            },
             type: _db.QueryTypes.INSERT
           })
         //[results, metadata]
@@ -129,13 +206,9 @@ const _db = require('../config/database')
         res.json({Status : false , Message : err.message})
     }
 
-  
-
-    console.log('article_temp :', article_temp);
-
 
     
-    res.json({Status: true, Message : 'Done'})
+    
  }
  
 

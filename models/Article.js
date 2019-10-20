@@ -21,6 +21,9 @@ const Article = db.define('Article', {
     ArticleName : {
         type : Sequelize.STRING
     },
+    SubTitle: {
+        type : Sequelize.STRING
+    },
     ArticleAuthorName : {
         type : Sequelize.STRING
     },
