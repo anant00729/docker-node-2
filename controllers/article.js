@@ -84,8 +84,10 @@ const _db = require('../config/database')
     try{
         data = data.map((d) => {
             if(d.type === 'block-img' || d.type === 'inline-img'){
-                d.value = arr[0]
-                arr.splice(0,1)
+                if(d.value.length == 0){
+                    d.value = arr[0]
+                    arr.splice(0,1)
+                }
             }
 
             return d

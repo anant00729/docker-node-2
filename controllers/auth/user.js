@@ -12,7 +12,7 @@ const fetch = require('node-fetch');
     const password = req.body.password
     const name = email.split('@')[0]
     const isActive = '1'
-    const UserType = 'nor'
+    const UserType = req.body.userType
     const picture = ''
 
     try{
@@ -66,9 +66,10 @@ const fetch = require('node-fetch');
 
     const email = req.body.email
     const password = req.body.password
+    const type = req.body.type
     
     try{
-        const res_d = await checkUserPresent(email , password)
+        const res_d = await checkUserPresent(email , password,type)
 
         if(res_d[0] > 0){
             const user = res_d[1]

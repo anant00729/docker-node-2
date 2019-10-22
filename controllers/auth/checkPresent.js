@@ -1,9 +1,9 @@
 const _db = require('../../config/database')
 
-exports.checkUserPresent = async (email , password) => {
+exports.checkUserPresent = async (email , password, type) => {
     
     //check the user register
-    const q1 = `SELECT * FROM "Users" WHERE "email" = '${email}' AND "password" = '${password}'`
+    const q1 = `SELECT * FROM "Users" WHERE "email" = '${email}' AND "password" = '${password}' AND "UserType" = '${type}'`
     const f_res_d = await _db.query(q1)
     const data = [f_res_d[0].length, f_res_d[0][0]]
     return data

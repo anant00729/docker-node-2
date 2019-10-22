@@ -23,9 +23,9 @@ app.use(bodyParser.json())
 
 
 
-app.use('/article' , require('./routes/article'))
-app.use('/auth' , require('./routes/user'))
-app.use('/community' , require('./routes/community'))
+app.use('/api/article' , require('./routes/article'))
+app.use('/api/auth' , require('./routes/user'))
+app.use('/api/community' , require('./routes/community'))
 
 
 
@@ -40,11 +40,23 @@ const PORT = process.env.PORT || 3001
 
 
 
-app.use(express.static('./public'))
+//app.use(express.static('./public'))
+//app.use(express.static('./public/build'))
+app.use(express.static(path.join(__dirname, 'public/build')));
+
 
 app.get('*', (req,res)=> {
+    ///app.use(express.static('public/build'))
+    //res.sendFile(path.join(__dirname+'/public/build/index.html'));
     res.sendFile(path.resolve(__dirname, 'public', 'build', 'index.html'))
+    //res.sendFile(path.resolve(__dirname, 'public/build', 'index.html'))
 })
+
+
+
+// app.get('/admin', (req,res)=> {
+//     res.sendFile(path.resolve(__dirname, 'public', 'build1', 'index.html'))
+// })s
 
 
 
