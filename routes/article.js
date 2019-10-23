@@ -11,7 +11,7 @@ let storage = multer.diskStorage({
     filename: (req, file, cb) => {
 
       let arr = file.originalname.split('.')
-      let i = arr[arr.length - 1]
+      let i = arr.length - 1
       let ext = arr[i]
       
       cb(null, `${req.body.name}.${ext}`)
