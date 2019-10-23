@@ -80,12 +80,18 @@ const _db = require('../config/database')
 
 
  exports.uploadImageForAuthor = async(req,res) => {
-    res.json(req.file.filename)
+    let f = req.file
+     let data = f.destination + '/' + f.filename
+     data = data.substring(6,data.length)
+    res.json({Status : true , Message : '' , imgUrl : data})
  }
 
 
  exports.uploadImageForArticles = async(req,res) => {
-    res.json(req.file.filename)
+    let f = req.file
+    const data = f.destination + f.filename
+    res.json(data)
+    res.json({Status : true , Message : '' , imgUrl : data})
  }
 
  exports.updateArticlesTemplate = async(req,res) => {

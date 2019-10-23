@@ -6,7 +6,7 @@ const multer = require('multer');
 
 let storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, 'public/build/adminImages')
+      cb(null, 'public/uploads/admin')
     },
     filename: (req, file, cb) => {
       let ext = file.originalname.split('.')[1]
@@ -15,7 +15,6 @@ let storage = multer.diskStorage({
     }
 });
 var upload = multer({storage: storage});
-
 
 
 
