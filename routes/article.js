@@ -14,7 +14,7 @@ let storage = multer.diskStorage({
       let i = arr.length - 1
       let ext = arr[i]
       
-      cb(null, `${req.body.name}.${ext}`)
+      cb(null, `${req.body.name}.png`)
     }
 });
 var upload = multer({storage: storage});
