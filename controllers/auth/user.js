@@ -8,12 +8,12 @@ const fetch = require('node-fetch');
 
  exports.register = async (req,res) => {
 
-    const email = req.body.email
-    const password = req.body.password
-    const name = email.split('@')[0]
+    const email = req.body.email || ''
+    const password = req.body.password || ''
+    const name = email.split('@')[0] || ''
     const isActive = '1'
-    const UserType = req.body.userType
-    const picture = ''
+    const UserType = req.body.userType || ''
+    const picture = req.body.picture || ''
 
     try{
 
@@ -242,7 +242,14 @@ exports.s_login = async (req,res) => {
 
 
  exports.getAuthorCount = async (req,res) => {
-     
+    let q1 = `SELECT nextval(pg_get_serial_sequence('public."Users"', 'id'));`
+    const res_d = await _db.query(q1)
+
+    if(res_d[0].length != 0){
+        res.json({Status : true , Message : '', Count : res_d[0][0].nextval})
+    }else {
+        res.json({Status : false , Message : 'No Authors found'})
+    }
  }
 
 

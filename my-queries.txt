@@ -54,3 +54,17 @@ SELECT * FROM "Articles"
 UPDATE public."Articles"
 	SET "ArticleTemplate"= 'asdsa'
 	WHERE "id" = 1;
+
+SELECT id, "createdAt", "updatedAt", name, email, password, "isActive", "UserType", picture
+	FROM public."Users";
+
+
+SELECT * FROM "Users" WHERE "UserType" = 'admin'
+
+SELECT MAX("id") FROM "Users"
+
+select ;
+
+	
+SELECT currval(pg_get_serial_sequence('public."Users"', 'id'));	
+SELECT nextval(pg_get_serial_sequence('public."Users"', 'id'));	

@@ -21,9 +21,10 @@ _r.post('/register', _a_c.register)
 _r.post('/login', _a_c.login)
 _r.post('/socialLogin', _a_c.s_login)
 _r.get('/truncateAll', _a_c.truncateAll) 
-_r.get('/getAuthorCount', _a_c.getAuthorCount) 
-_r.post('/getAllAuthors', checkUserPresentMiddle ,_a_c.getAllAuthors) 
 _r.post('/logout', _a_c.logout) 
+
+_r.post('/getAuthorCount', checkUserPresentMiddle ,_a_c.getAuthorCount) 
+_r.post('/getAllAuthors', checkUserPresentMiddle ,_a_c.getAllAuthors) 
 
 
 module.exports = _r
