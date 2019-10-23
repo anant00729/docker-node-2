@@ -9,7 +9,10 @@ let storage = multer.diskStorage({
       cb(null, 'public/uploads/admin')
     },
     filename: (req, file, cb) => {
-      let ext = file.originalname.split('.')[1]
+
+      let arr = file.originalname.split('.')
+      let i = arr[arr.length - 1]
+      let ext = arr[i]
       
       cb(null, `${req.body.name}.${ext}`)
     }
