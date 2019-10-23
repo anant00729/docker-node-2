@@ -240,4 +240,12 @@ exports.s_login = async (req,res) => {
     }
  }
 
+
+ exports.getAuthorCount = async (req,res) => {
+     
+ }
+
+
+
+ 
  
