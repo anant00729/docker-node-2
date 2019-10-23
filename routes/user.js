@@ -1,5 +1,6 @@
 const express = require('express')
 const _a_c = require('../controllers/auth/user')
+const {checkUserPresentMiddle} = require('../controllers/auth/checkPresent')
 
 // const multer = require('multer');
 
@@ -20,6 +21,7 @@ _r.post('/register', _a_c.register)
 _r.post('/login', _a_c.login)
 _r.post('/socialLogin', _a_c.s_login)
 _r.get('/truncateAll', _a_c.truncateAll) 
+_r.post('/getAllAuthors', checkUserPresentMiddle ,_a_c.getAllAuthors) 
 _r.post('/logout', _a_c.logout) 
 
 

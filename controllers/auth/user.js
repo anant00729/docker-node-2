@@ -80,7 +80,7 @@ const fetch = require('node-fetch');
             })
 
             if(res_d1){
-                res.json({Status : true , Message : '', token})
+                res.json({Status : true , Message : '', token , name : user.name , email : user.email})
             }
             
         }else{
@@ -228,5 +228,16 @@ exports.s_login = async (req,res) => {
  }
  
 
+ exports.getAllAuthors = async (req,res) => {
+
+    let q1 = `SELECT "id" ,"name", "email" , "picture" , "isActive" FROM public."Users" WHERE "UserType" = 'admin'`   
+    const res_d = await _db.query(q1)
+
+    if(res_d[0].length != 0){
+        res.json({Status : true , Message : '', Authors : res_d[0]})
+    }else {
+        res.json({Status : false , Message : 'No Authors found'})
+    }
+ }
 
  

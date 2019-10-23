@@ -4,11 +4,18 @@ const _db = require('../config/database')
 
  exports.getAllArticles = async (req,res) => {
 
+    const type = req.body.type 
 
     try {
+    let _t = ''
 
-    const _t =  `SELECT "ArticleName", "ArticleAuthorName", "PublishedOn", "ReadTime",  id, "SubTitle", "MainImg", "SearchTags"
-    FROM public."Articles"`;
+    if(type === 'nor') {
+        _t = `SELECT "ArticleName", "ArticleAuthorName", "PublishedOn", "ReadTime",  id, "SubTitle", "MainImg", "SearchTags"
+        FROM public."Articles" WHERE "isActive" = '1'`
+    } else {
+        _t =  `SELECT "ArticleName", "ArticleAuthorName", "PublishedOn", "ReadTime",  id, "SubTitle", "MainImg", "SearchTags", "isActive"
+        FROM public."Articles"`;
+    }  
     
     const res_d = await _db.query(_t, {
         type: _db.QueryTypes.SELECT
@@ -70,6 +77,11 @@ const _db = require('../config/database')
     })
  }
 
+
+
+ exports.uploadImageForAuthor = async(req,res) => {
+    res.json(req.file.filename)
+ }
 
 
  exports.uploadImageForArticles = async(req,res) => {
