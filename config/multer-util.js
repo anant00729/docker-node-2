@@ -9,7 +9,8 @@ _d.checkFolders = function (dir) {
   }
 }
 
-
+_d.checkFolders('public/uploads/article')
+_d.checkFolders('public/uploads/admin')
 
 
 let storage = multer.diskStorage({
