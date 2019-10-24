@@ -1,21 +1,22 @@
 const express = require('express')
 const _a_c = require('../controllers/article')
 const {checkUserPresentMiddle} = require('../controllers/auth/checkPresent')
-const multer = require('multer');
+var upload = require('../config/multer-util')
+// const multer = require('multer');
 
 
-let storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, 'public/uploads/admin')
-    },
-    filename: (req, file, cb) => {
-      // let arr = file.originalname.split('.')
-      // let i = arr.length - 1
-      // let ext = arr[i]
-      cb(null, `${req.body.name}.png`)
-    }
-});
-var upload = multer({storage: storage});
+// let storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//       cb(null, 'public/uploads/admin')
+//     },
+//     filename: (req, file, cb) => {
+//       // let arr = file.originalname.split('.')
+//       // let i = arr.length - 1
+//       // let ext = arr[i]
+//       cb(null, `${req.body.name}.png`)
+//     }
+// });
+// var upload = multer({storage: storage});
 
 
 
