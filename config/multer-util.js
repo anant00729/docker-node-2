@@ -5,6 +5,7 @@ var shell = require('shelljs');
 let _d = {}
 _d.checkFolders = function (dir) {
   if (!fs.existsSync(dir)){
+      console.log('folder path :' + dir + ' created');
       shell.mkdir('-p', dir);
   }
 }
