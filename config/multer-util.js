@@ -29,7 +29,7 @@ let storage = multer.diskStorage({
         
         if(type === 'article'){
           dir = 'public/uploads/article'
-          cb(null, `${file.originalname}.png`)
+          cb(null, `${file.originalname}`)
         }else if(type === 'author'){
           cb(null, `${req.body.name}.png`)
         }

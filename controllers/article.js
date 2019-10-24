@@ -239,9 +239,11 @@ const _db = require('../config/database')
  exports.uploadImageForArticles = async(req,res) => {
 
     try {
-        let f = req.file
-        const data = f.destination + f.filename
-        res.json(data)
+        let data = []
+
+        for(let f of req.files){
+            data.push(f.destination + f.filename)
+        }
         res.json({Status : true , Message : '' , imgUrl : data})  
         
     } catch (error) {
