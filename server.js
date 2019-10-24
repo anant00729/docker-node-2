@@ -6,6 +6,8 @@ const path = require('path')
 
 
 
+
+
 // Test DB 
 db.authenticate()
 .then(()=> console.log('connected to the database'))
