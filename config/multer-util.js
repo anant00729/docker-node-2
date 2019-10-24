@@ -25,10 +25,18 @@ let storage = multer.diskStorage({
         cb(null, dir)
 },
     filename: (req, file, cb) => {
+      const type = req.body.type
+        
+        if(type === 'article'){
+          dir = 'public/uploads/article'
+          cb(null, `${file.originalname}.png`)
+        }else if(type === 'author'){
+          cb(null, `${req.body.name}.png`)
+        }
       // let arr = file.originalname.split('.')
       // let i = arr.length - 1
       // let ext = arr[i]
-      cb(null, `${req.body.name}.png`)
+      
     }
 });
 

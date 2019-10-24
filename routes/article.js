@@ -30,7 +30,7 @@ _r.post('/instert100Articles', _a_c.instert100Articles)
 _r.post('/insertSingleArticle', _a_c.insertSingleArticle)
 // Dashhboard routes
 // For image Upload
-_r.post('/uploadImageForArticles', upload.single('image') ,  _a_c.uploadImageForArticles)
+_r.post('/uploadImageForArticles', upload.any() ,  _a_c.uploadImageForArticles)
 _r.post('/uploadImageForAuthor',  upload.single('image') ,  _a_c.uploadImageForAuthor)
 
 
