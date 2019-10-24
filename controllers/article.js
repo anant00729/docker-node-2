@@ -242,7 +242,9 @@ const _db = require('../config/database')
         let data = []
 
         for(let f of req.files){
-            data.push(f.destination + f.filename)
+            let img_p = f.destination + '/' +f.filename 
+            img_p = img_p.substring(6,img_p.length)
+            data.push(img_p)
         }
         res.json({Status : true , Message : '' , imgUrl : data})  
         
