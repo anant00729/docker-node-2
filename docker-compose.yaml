@@ -32,7 +32,8 @@ services:
     environment:
       - DATABASE_URL=postgres://postgres:password@db:5432/quonquer
       - PORT=3000   
-  
+    volumes:
+      - public:/public:rw
 volumes: 
   pgdata:        
-    
+  public:  
