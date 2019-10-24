@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.56f8ac9a.chunk.css",
+    "main.js": "/static/js/main.77fd9f3a.chunk.js",
+    "main.js.map": "/static/js/main.77fd9f3a.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.b047a503.js",
+    "runtime~main.js.map": "/static/js/runtime~main.b047a503.js.map",
+    "static/js/2.1d4e3be9.chunk.js": "/static/js/2.1d4e3be9.chunk.js",
+    "static/js/2.1d4e3be9.chunk.js.map": "/static/js/2.1d4e3be9.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.a866af6d89e22c2a51899c737d58bccb.js": "/precache-manifest.a866af6d89e22c2a51899c737d58bccb.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.56f8ac9a.chunk.css.map": "/static/css/main.56f8ac9a.chunk.css.map",
+    "static/media/a-det-sigin-up.png": "/static/media/a-det-sigin-up.e9645c26.png",
+    "static/media/app_img.jpg": "/static/media/app_img.82f6de72.jpg"
+  }
+}
