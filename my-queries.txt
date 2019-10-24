@@ -68,3 +68,4 @@ select ;
 	
 SELECT currval(pg_get_serial_sequence('public."Users"', 'id'));	
 SELECT nextval(pg_get_serial_sequence('public."Users"', 'id'));	
+TRUNCATE ONLY "UserSessions" CASCADE

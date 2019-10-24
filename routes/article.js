@@ -1,6 +1,6 @@
 const express = require('express')
 const _a_c = require('../controllers/article')
-
+const {checkUserPresentMiddle} = require('../controllers/auth/checkPresent')
 const multer = require('multer');
 
 
@@ -27,9 +27,14 @@ _r.post('/insertAllArticles', _a_c.insertAllArticles)
 _r.post('/updateArticlesTemplate', _a_c.updateArticlesTemplate)
 _r.post('/instert100Articles', _a_c.instert100Articles)
 _r.post('/insertSingleArticle', _a_c.insertSingleArticle)
+// Dashhboard routes
+// For image Upload
 _r.post('/uploadImageForArticles', upload.single('image') ,  _a_c.uploadImageForArticles)
-_r.post('/uploadImageForAuthor', upload.single('image') ,  _a_c.uploadImageForAuthor)
+_r.post('/uploadImageForAuthor',  upload.single('image') ,  _a_c.uploadImageForAuthor)
 
+
+// For image Upload
+_r.post('/getFutureIdAndAuthorsList', checkUserPresentMiddle ,_a_c.getFutureIdAndAuthorsList)
 
 
 module.exports = _r

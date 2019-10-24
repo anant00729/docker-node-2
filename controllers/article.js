@@ -79,21 +79,7 @@ const _db = require('../config/database')
 
 
 
- exports.uploadImageForAuthor = async(req,res) => {
-    let f = req.file
-     let data = f.destination + '/' + f.filename
-     data = data.substring(6,data.length)
-    res.json({Status : true , Message : '' , imgUrl : data})
- }
-
-
- exports.uploadImageForArticles = async(req,res) => {
-    let f = req.file
-    const data = f.destination + f.filename
-    res.json(data)
-    res.json({Status : true , Message : '' , imgUrl : data})
- }
-
+ 
  exports.updateArticlesTemplate = async(req,res) => {
 
     const id = req.body.id
@@ -235,6 +221,61 @@ const _db = require('../config/database')
 
  
 
+ exports.uploadImageForAuthor = async(req,res) => {
 
+    try {
+        let f = req.file
+        let data = f.destination + '/' + f.filename
+        data = data.substring(6,data.length)
+       res.json({Status : true , Message : '' , imgUrl : data})
+    } catch (error) {
+        res.json({Status : false , Message : error.message})
+    }
+
+   
+ }
+
+
+ exports.uploadImageForArticles = async(req,res) => {
+
+    try {
+        let f = req.file
+        const data = f.destination + f.filename
+        res.json(data)
+        res.json({Status : true , Message : '' , imgUrl : data})  
+        
+    } catch (error) {
+        res.json({Status : false , Message : error.message})
+    }
+   
+ }
+
+
+ exports.getFutureIdAndAuthorsList = async (req,res) => {
+
+
+    try {
+
+        let q1 = `SELECT nextval(pg_get_serial_sequence('public."Articles"', 'id'));`
+        const res_d1 = await _db.query(q1)
+        let nextVal = res_d1[0][0].nextval
+    
+    
+        let q2 = `SELECT "id" ,"name", "isActive" FROM public."Users" WHERE "UserType" = 'admin' AND "isActive" = '1'`   
+        const res_d = await _db.query(q2)
+    
+        if(res_d[0].length != 0){
+            res.json({Status : true , Message : '', Authors : res_d[0], Count : nextVal})
+        }else {
+            res.json({Status : false , Message : 'No Authors found'})
+        }
+    
+        
+    } catch (error) {
+        res.json({Status : false , Message : error.message})
+    }
+   
+ }
  
+
 
