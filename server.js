@@ -6,7 +6,8 @@ const path = require('path')
 
 
 console.log('hello all');
-console.log('kajshda');
+console.log('hello all');
+
 
 
 // Test DB 

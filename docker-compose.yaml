@@ -3,7 +3,7 @@ services:
   db:
     image: postgres
     ports:
-      - "5432:5432"
+      - "5434:5432"
     restart: always
     environment:
       - POSTGRES_USER=postgres
@@ -33,7 +33,8 @@ services:
       - DATABASE_URL=postgres://postgres:password@db:5432/quonquer
       - PORT=3000   
     volumes:
-      - public:/public:rw
+      - /Users/anantawasthy/Documents/NodeJSWorkspace/CodeGig/public/uploads:/codinggig/public/uploads
+      
 volumes: 
-  pgdata:        
-  public:  
+  pgdata:     
+  
