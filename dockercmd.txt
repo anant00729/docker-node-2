@@ -47,3 +47,7 @@ export PATH=$NODEJS_HOME:$PATH
 
 docker inspect 2f50fabe8a87 | grep IPAddress
 
+volumes:
+      - /Users/anantawasthy/Documents/NodeJSWorkspace/CodeGig/public/uploads:/codinggig/public/uploads
+volumes:
+      - /root/docker-node-2/public/uploads:/codinggig/public/uploads

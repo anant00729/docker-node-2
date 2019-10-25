@@ -33,7 +33,7 @@ services:
       - DATABASE_URL=postgres://postgres:password@db:5432/quonquer
       - PORT=3000   
     volumes:
-      - /Users/anantawasthy/Documents/NodeJSWorkspace/CodeGig/public/uploads:/codinggig/public/uploads
+      - /root/docker-node-2/public/uploads:/codinggig/public/uploads
       
 volumes: 
   pgdata:     
