@@ -5,7 +5,7 @@ const db = require('./config/database')
 const path = require('path')
 
 
-console.log('hello all');
+console.log('remove hello all');
 //console.log('hello all');
 
 
