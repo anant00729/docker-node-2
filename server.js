@@ -58,7 +58,6 @@ app.use(express.static('public'));
 
 
 
-
 app.get('*', (req,res)=> {
     ///app.use(express.static('public/build'))
     //res.sendFile(path.join(__dirname+'/public/build/index.html'));
@@ -74,7 +73,7 @@ app.get('*', (req,res)=> {
 
 //app.use(express.static('files'))
 //app.use('/adminImages', express.static('public/adminImages'))
-//app.use(express.static(path.join(__dirname, 'public/images')));
+//app.use(express.static(path.join(__dirname,-- 'public/images')));
 
 
 // app.get('/admin', (req,res)=> {

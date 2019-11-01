@@ -40,8 +40,18 @@ const _db = require('../config/database')
 
         const id = req.body.id
 
-        const _t =  `SELECT *
-        FROM public."Articles" WHERE "id" = (:id)`;
+        const _t =  `SELECT
+        "ArticleName",
+        "ArticleTemplate",
+        "MainImg",
+        "PublishedOn",
+        "ReadTime",
+        "ArticleAuthorName",
+        "picture",
+        "SubTitle"
+        FROM
+        "Articles" a
+        INNER JOIN "Users" u ON  a."AuthorId" = u."id" WHERE a."id" = (:id)`;
         
         let res_d = await _db.query(_t, {
             replacements : {id} ,
@@ -50,7 +60,11 @@ const _db = require('../config/database')
     
           res_d = res_d.map((d)=> {
             d.ArticleTemplate = JSON.parse(d.ArticleTemplate)
-            d.SearchTags = JSON.parse(d.SearchTags)
+            if(d.SearchTags){
+                d.SearchTags = JSON.parse(d.SearchTags || '')
+            }else {
+                d.SearchTags = ''
+            }
             return d
         })
     
@@ -145,31 +159,35 @@ const _db = require('../config/database')
 
  exports.insertSingleArticle = async(req,res) => {
 
+   
 
-    const ArticleName = req.body.title
-    const SubTitle = req.body.subTitle
-    const ArticleAuthorName = req.body.authorname
-    const PublishedOn = req.body.Publishedon
-    const ReadTime = req.body.readtime
-    let ArticleTemplate = req.body.article_temp
-    let SearchTags = req.body.tags
-    const arr = req.body.images
+
+    const ArticleName = req.body.ArticleName
+    const SubTitle = req.body.SubTitle
+    const ArticleAuthorName = req.body.ArticleAuthorObj.name
+    const AuthorId = req.body.ArticleAuthorObj.id
+    const PublishedOn = req.body.PublishedOn
+    const ReadTime = req.body.ReadTime
+    let ArticleTemplate = req.body.ArticleTemplate
+    let SearchTags = req.body.tags || ''
+    const arr = req.body.images || ''
+    const MainImg =  req.body.picturePath
 
   
     
     try{
 
-        const MainImg =  arr[0]
-        arr.splice(0,1)
+        // const MainImg =  arr[0]
+        // arr.splice(0,1)
 
-        ArticleTemplate = ArticleTemplate.map((d) => {
-            if(d.type === 'block-img' || d.type === 'inline-img'){
-                d.value = arr[0]
-                arr.splice(0,1)
-            }
+        // ArticleTemplate = ArticleTemplate.map((d) => {
+        //     if(d.type === 'block-img' || d.type === 'inline-img'){
+        //         d.value = arr[0]
+        //         arr.splice(0,1)
+        //     }
 
-            return d
-        })
+        //     return d
+        // })
 
 
         ArticleTemplate = JSON.stringify(ArticleTemplate)
@@ -177,7 +195,7 @@ const _db = require('../config/database')
 
 
         const _t =  `INSERT INTO public."Articles"(
-            "ArticleName", "SubTitle",  "ArticleAuthorName", "PublishedOn", "ReadTime", "isActive", "ArticleTemplate", "MainImg", "SearchTags")
+            "ArticleName", "SubTitle",  "ArticleAuthorName", "PublishedOn", "ReadTime", "isActive", "ArticleTemplate", "MainImg", "SearchTags", "AuthorId")
             VALUES (
                 (:ArticleName),
                 (:SubTitle),
@@ -187,7 +205,8 @@ const _db = require('../config/database')
                 '1',
                 (:ArticleTemplate),
                 (:MainImg),
-                (:SearchTags)
+                (:SearchTags),
+                (:AuthorId)
                 );`
 
         const res_d = await _db.query(_t, {
@@ -199,7 +218,8 @@ const _db = require('../config/database')
                 ReadTime,
                 ArticleTemplate,
                 MainImg,
-                SearchTags
+                SearchTags,
+                AuthorId
             },
             type: _db.QueryTypes.INSERT
           })
